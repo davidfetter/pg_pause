@@ -34,6 +34,7 @@
 #include "libpq/md5.h"
 
 static bool		ddl = false;
+static object_access_hook_type old_object_access_hook;
 
 
 PG_MODULE_MAGIC;
@@ -57,6 +58,9 @@ pg_pause_ddl(ObjectAccessType access,
 		ereport(ERROR,
 				(errcode(ERRCODE_INSUFFICIENT_PRIVILEGE),
 				errmsg("DDL is paused...for now")));
+
+	if (old_object_access_hook != NULL)
+		old_object_access_hook(access, classId, objectId, subId, arg);
 }
 
 /*
@@ -67,6 +71,7 @@ _PG_init(void)
 {
     /* Add the hook function
 	 * XXX this should actually go to a marshaler */
+	old_object_access_hook = object_access_hook;
 	object_access_hook = pg_pause_ddl;
 
     // define the custom parameter
