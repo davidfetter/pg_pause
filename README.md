@@ -1,2 +1,2 @@
 # pg_pause
-ProcessUtility hook for pausing DDL
+Hook-based system for pausing operations in PostgreSQL.
