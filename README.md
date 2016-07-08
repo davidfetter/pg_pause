@@ -13,13 +13,13 @@ then restart the server.
 To pause DDL, do:
 
 ```
-ALTER SYSTEM SET pg_pause.ddl = true;
-SELECT pg_reload_conf();
+    ALTER SYSTEM SET pg_pause.ddl = true;
+    SELECT pg_reload_conf();
 ```
 
 To resume DDL:
 
 ```
-ALTER SYSTEM SET pg_pause.ddl = false;
-SELECT pg_reload_conf();
+    ALTER SYSTEM SET pg_pause.ddl = false;
+    SELECT pg_reload_conf();
 ```
