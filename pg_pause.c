@@ -16,22 +16,10 @@
 
 #include <ctype.h>
 
-#include "catalog/dependency.h"
-#include "catalog/objectaccess.h"
-#include "catalog/pg_class.h"
-#include "catalog/pg_database.h"
-#include "catalog/pg_namespace.h"
-#include "catalog/pg_proc.h"
-#include "commands/seclabel.h"
-#include "executor/executor.h"
-#include "fmgr.h"
-#include "miscadmin.h"
-#include "tcop/utility.h"
-#include "utils/guc.h"
+#include "catalog/objectaccess.h"	/* Needed for ObjectAccessType */
+#include "utils/guc.h"				/* Needed for GUCs */
 
-#include "commands/user.h"
-#include "fmgr.h"
-#include "libpq/md5.h"
+#include "fmgr.h"					/* Needed for PG_MODULE_MAGIC */
 
 static bool		ddl = false;
 static object_access_hook_type old_object_access_hook;
